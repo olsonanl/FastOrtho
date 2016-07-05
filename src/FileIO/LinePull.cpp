@@ -123,7 +123,7 @@ char ** LinePull::getCharSplitParts(char splitter, unsigned & partCount) {
 
 			// buffer used to hold part is now considered used
 			unused = splitAt + 1;
-			if (available < unused - start) {
+			if (available < (size_t) (unused - start)) {
 				available = 0;
 			} else {
 				available -= unused - start;
