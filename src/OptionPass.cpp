@@ -23,7 +23,7 @@
 #include <dir.h>
 #define STAT64 stat
 #else
-#define STAT64 stat64
+#define STAT64 stat
 #endif
 #include <dirent.h>
 

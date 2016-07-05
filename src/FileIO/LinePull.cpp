@@ -18,7 +18,7 @@ LinePull::LinePull(size_t room, const char *filePath) {
 	pullTries = 0;
 	bufferRoom = room;
 	partRoom = 0;
-	reader = fopen64(filePath, "r");
+	reader = fopen(filePath, "r");
 	if (reader == NULL) {
 		// block any attempt to free buffers
 		partPoints = NULL;

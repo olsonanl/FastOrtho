@@ -1,3 +1,20 @@
+CC=g++
+CFLAGS=-Wall -O3
+LDFLAGS=
+RM=rm
+
+ifeq ($(OS),Windows_NT)
+    CFLAGS += -DWIN32
+else
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Linux)
+	CFLAGS += `getconf LFS_CFLAGS`
+	LDFLAGS += -enable-auto-import
+    endif
+    ifeq ($(UNAME_S),Darwin)
+    endif
+endif
+
 SRC=FastOrtho.cpp \
   Executer.cpp \
   OptionPass.cpp \
@@ -18,15 +35,10 @@ SRC=FastOrtho.cpp \
   Parser/CharSplitParser.cpp \
   Parser/GgParser.cpp \
   Parser/LineParser.cpp
-    
+
 OBJ=$(SRC:.cpp=.o)
 EXE=FastOrtho
 
-CC=g++
-CFLAGS=-Wall -O3
-LDFLAGS=-enable-auto-import
-RM=rm
-	
 %.o: %.cpp 
 	$(CC) $(CFLAGS) -o $@ -c $<
 
